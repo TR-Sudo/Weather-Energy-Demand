@@ -59,10 +59,10 @@ def render_test_result(
 
 
 def main() -> None:
-    st.title("Assignment 4: Interactive Statistical Analysis App")
+    st.title("GTA Weather and Ontario Demand Explorer")
     st.markdown(
-        "This app extends the Assignment 3 GTA weather project with Ontario IESO electricity demand "
-        "to study how temperature patterns line up with changes in provincial power usage."
+        "This dashboard links GTA weather averages with Ontario IESO electricity demand "
+        "to explore how temperature extremes align with provincial peak usage."
     )
 
     df = load_data()
@@ -97,9 +97,8 @@ def main() -> None:
 
     st.header("1. Project Overview / Data Story")
     st.write(
-        "Assignment 3 built a weather gold dataset for Toronto, Oshawa, and Barrie using Open-Meteo. "
-        "For Assignment 4, the project adds hourly Ontario demand from the Independent Electricity System Operator (IESO), "
-        "aggregates it to daily demand metrics, and joins it to the daily GTA weather summary on `date`."
+        "This project combines GTA weather metrics for Toronto, Oshawa, and Barrie with Ontario demand data from the Independent Electricity System Operator (IESO). "
+        "Daily demand is aggregated and joined to the GTA weather summary by `date` to explore how temperature extremes relate to peak load."
     )
     st.write(
         "The core question is whether extreme temperature conditions are associated with higher electricity demand and "
