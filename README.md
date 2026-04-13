@@ -94,6 +94,27 @@ python transform/create_gold.py
 streamlit run app/streamlit_app.py
 ```
 
+## Public Deployment
+
+### Streamlit Community Cloud
+1. Push this repository to GitHub.
+2. Visit https://share.streamlit.io and connect your GitHub account.
+3. Select this repository, branch, and `app/streamlit_app.py` as the app file.
+4. Deploy and share the generated public URL.
+
+### Local public hosting
+If you want to expose the app from a server or VM, run:
+
+```bash
+streamlit run app/streamlit_app.py --server.address 0.0.0.0 --server.port 8501
+```
+
+Ensure your host firewall or router allows incoming traffic on port `8501`.
+
+### Notes
+- The app uses `data/gold/final_dataset.csv`, so include that file in the repo or the deployment environment.
+- The repository now includes `.streamlit/config.toml` with `server.address = "0.0.0.0"` for public hosting and `enableCORS = false`.
+
 ## Join Strategy
 
 - Weather is collected at the city-date level for Toronto, Oshawa, and Barrie.

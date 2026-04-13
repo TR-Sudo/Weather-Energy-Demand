@@ -112,8 +112,8 @@ def main() -> None:
     metric3.metric("Avg daily temp (C)", f"{filtered['avg_temp_mean_celsius'].mean():.1f}")
     metric4.metric("High-demand days", f"{filtered['high_demand_day'].sum()}")
 
-    st.dataframe(filtered.head(10), use_container_width=True)
-    st.dataframe(filtered.describe(include="all").transpose(), use_container_width=True)
+    st.dataframe(filtered.head(10), width="stretch")
+    st.dataframe(filtered.describe(include="all").transpose(), width="stretch")
 
     column_descriptions = pd.DataFrame(
         [
@@ -125,7 +125,7 @@ def main() -> None:
         ],
         columns=["column", "description"],
     )
-    st.dataframe(column_descriptions, use_container_width=True)
+    st.dataframe(column_descriptions, width="stretch")
 
     st.header("3. Visual Storytelling")
     line_fig = go.Figure()
@@ -152,7 +152,7 @@ def main() -> None:
         yaxis2=dict(title="Demand (MW)", overlaying="y", side="right"),
         legend=dict(orientation="h"),
     )
-    st.plotly_chart(line_fig, use_container_width=True)
+    st.plotly_chart(line_fig, width="stretch")
     st.caption("Cold and hot periods tend to line up with higher demand, which motivates the later tests.")
 
     box_fig = px.box(
@@ -162,7 +162,7 @@ def main() -> None:
         labels={"temp_extreme_flag": "Temperature extreme flag", "ontario_demand_peak_mw": "Peak demand (MW)"},
         title="Peak demand on extreme vs non-extreme temperature days",
     )
-    st.plotly_chart(box_fig, use_container_width=True)
+    st.plotly_chart(box_fig, width="stretch")
 
     count_df = (
         filtered.groupby(["temp_extreme_flag", "high_demand_day"])
@@ -178,7 +178,7 @@ def main() -> None:
         title="High-demand day counts by temperature-extreme status",
         labels={"temp_extreme_flag": "Temperature extreme flag", "high_demand_day": "High demand day"},
     )
-    st.plotly_chart(count_fig, use_container_width=True)
+    st.plotly_chart(count_fig, width="stretch")
 
     scatter_fig = px.scatter(
         filtered,
@@ -202,7 +202,7 @@ def main() -> None:
             name="Linear trend",
         )
     )
-    st.plotly_chart(scatter_fig, use_container_width=True)
+    st.plotly_chart(scatter_fig, width="stretch")
 
     st.header("4. Hypothesis Testing")
     analysis = st.selectbox(
@@ -275,10 +275,10 @@ def main() -> None:
         st.write(
             "A significant result would suggest that high-demand days are not randomly distributed across extreme and non-extreme temperature conditions."
         )
-        st.dataframe(contingency, use_container_width=True)
+        st.dataframe(contingency, width="stretch")
         st.dataframe(
             pd.DataFrame(expected, index=contingency.index, columns=contingency.columns),
-            use_container_width=True,
+            width="stretch",
         )
 
     elif analysis == "Variance comparison: demand variability by temperature extreme":
