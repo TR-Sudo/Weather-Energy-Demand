@@ -22,14 +22,14 @@ def _season_for_month(month: int) -> str:
 
 
 def create_gold_layer() -> tuple[pd.DataFrame, pd.DataFrame]:
-    silver_dir = Path("data/silver")
+    clean_dir = Path("data/clean")
     gold_dir = Path("data/gold")
     gold_dir.mkdir(parents=True, exist_ok=True)
 
-    weather = pd.read_csv(silver_dir / "weather_daily_clean.csv")
+    weather = pd.read_csv(clean_dir / "weather_daily_clean.csv")
     weather["date"] = pd.to_datetime(weather["date"])
 
-    demand = pd.read_csv(silver_dir / "ieso_demand_daily.csv")
+    demand = pd.read_csv(clean_dir / "ieso_demand_daily.csv")
     demand["date"] = pd.to_datetime(demand["date"])
 
     weather = (

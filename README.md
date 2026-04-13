@@ -26,10 +26,10 @@ Asmt3_Stat/
 ├── requirements.txt
 ├── .env.example
 ├── data/
-│   ├── bronze/
+│   ├── raw/
 │   │   ├── weather/
 │   │   └── ieso/
-│   ├── silver/
+│   ├── clean/
 │   └── gold/
 ├── ingest/
 │   ├── ingest_weather.py

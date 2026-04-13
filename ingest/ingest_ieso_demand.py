@@ -25,7 +25,7 @@ def iter_years(start_date: str, end_date: str) -> range:
 
 
 def ingest_ieso_demand() -> None:
-    """Download yearly demand reports into the bronze layer."""
+    """Download yearly demand reports into the raw data layer."""
 
     start_date = os.getenv("WEATHER_START_DATE", DEFAULT_START_DATE)
     end_date = os.getenv("WEATHER_END_DATE", DEFAULT_END_DATE)
@@ -33,14 +33,14 @@ def ingest_ieso_demand() -> None:
     session = requests.Session()
     session.trust_env = False
 
-    bronze_dir = Path("data/bronze/ieso")
-    bronze_dir.mkdir(parents=True, exist_ok=True)
+    raw_dir = Path("data/raw/ieso")
+    raw_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
 
     for year in iter_years(start_date, end_date):
         url = f"{BASE_URL}/PUB_Demand_{year}.csv"
-        output_path = bronze_dir / f"PUB_Demand_{year}_{timestamp}.csv"
+        output_path = raw_dir / f"PUB_Demand_{year}_{timestamp}.csv"
 
         try:
             response = session.get(url, timeout=60)

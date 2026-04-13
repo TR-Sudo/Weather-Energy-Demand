@@ -7,12 +7,12 @@ from pathlib import Path
 import pandas as pd
 
 
-bronze_dir = Path("data/bronze/weather")
-silver_dir = Path("data/silver")
-silver_dir.mkdir(parents=True, exist_ok=True)
+raw_dir = Path("data/raw/weather")
+clean_dir = Path("data/clean")
+clean_dir.mkdir(parents=True, exist_ok=True)
 
 rows = []
-for path in sorted(bronze_dir.glob("*.json")):
+for path in sorted(raw_dir.glob("*.json")):
     city = path.stem.split("_weather_")[0]
     with path.open("r", encoding="utf-8") as handle:
         raw = json.load(handle)
@@ -48,5 +48,5 @@ for column in [
 df["temp_range_celsius"] = df["temp_max_celsius"] - df["temp_min_celsius"]
 df = df.sort_values(["date", "city"]).reset_index(drop=True)
 
-df.to_csv(silver_dir / "weather_daily_clean.csv", index=False)
-print("Saved data/silver/weather_daily_clean.csv")
+df.to_csv(clean_dir / "weather_daily_clean.csv", index=False)
+print("Saved data/clean/weather_daily_clean.csv")

@@ -35,12 +35,12 @@ DAILY_VARIABLES = ",".join(
 
 
 def ingest_weather() -> None:
-    """Fetch historical weather data and save raw JSON snapshots to bronze."""
+    """Fetch historical weather data and save raw JSON snapshots to the raw data layer."""
 
     start_date = os.getenv("WEATHER_START_DATE", DEFAULT_START_DATE)
     end_date = os.getenv("WEATHER_END_DATE", DEFAULT_END_DATE)
 
-    weather_dir = Path("data/bronze/weather")
+    weather_dir = Path("data/raw/weather")
     weather_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")

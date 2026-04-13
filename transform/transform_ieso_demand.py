@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Transform raw IESO hourly demand data into silver-layer hourly and daily datasets.
+Transform raw IESO hourly demand data into clean hourly and daily datasets.
 """
 
 from __future__ import annotations
@@ -28,13 +28,13 @@ def _read_report(path: Path) -> pd.DataFrame:
 
 
 def transform_ieso_demand() -> tuple[pd.DataFrame, pd.DataFrame]:
-    bronze_dir = Path("data/bronze/ieso")
-    silver_dir = Path("data/silver")
-    silver_dir.mkdir(parents=True, exist_ok=True)
+    raw_dir = Path("data/raw/ieso")
+    clean_dir = Path("data/clean")
+    clean_dir.mkdir(parents=True, exist_ok=True)
 
-    files = sorted(bronze_dir.glob("PUB_Demand_*.csv"))
+    files = sorted(raw_dir.glob("PUB_Demand_*.csv"))
     if not files:
-        raise FileNotFoundError("No bronze IESO demand files found.")
+        raise FileNotFoundError("No raw IESO demand files found.")
 
     hourly = pd.concat((_read_report(path) for path in files), ignore_index=True)
     hourly = (
@@ -64,11 +64,11 @@ def transform_ieso_demand() -> tuple[pd.DataFrame, pd.DataFrame]:
     daily = daily.merge(peak_hours, on="date", how="left")
     daily["demand_range_mw"] = daily["ontario_demand_peak_mw"] - daily["ontario_demand_min_mw"]
 
-    hourly.to_csv(silver_dir / "ieso_demand_hourly_clean.csv", index=False)
-    daily.to_csv(silver_dir / "ieso_demand_daily.csv", index=False)
+    hourly.to_csv(clean_dir / "ieso_demand_hourly_clean.csv", index=False)
+    daily.to_csv(clean_dir / "ieso_demand_daily.csv", index=False)
 
-    print("Saved data/silver/ieso_demand_hourly_clean.csv")
-    print("Saved data/silver/ieso_demand_daily.csv")
+    print("Saved data/clean/ieso_demand_hourly_clean.csv")
+    print("Saved data/clean/ieso_demand_daily.csv")
 
     return hourly, daily
 

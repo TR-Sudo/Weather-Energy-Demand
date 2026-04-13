@@ -69,7 +69,7 @@ Reference the parent PRD sections on Problem Statement, Solution, Implementation
 
 - [ ] Weather ingestion supports the one-year window from `2025-04-01` through `2026-03-31` for Toronto, Oshawa, and Barrie and writes raw files into the repo
 - [ ] IESO demand ingestion writes raw Ontario demand files that can be reprocessed into stable tabular outputs
-- [ ] Silver transformations produce cleaned daily weather data and daily Ontario demand metrics that can be joined on `date`
+- [ ] Clean transformations produce cleaned daily weather data and daily Ontario demand metrics that can be joined on `date`
 - [ ] Gold-layer generation creates a single repo-stored final dataset with one row per day and the required derived variables, including continuous, binary, and categorical fields for downstream tests
 - [ ] The final gold dataset can be loaded locally without calling source APIs at runtime
 

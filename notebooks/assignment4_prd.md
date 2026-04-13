@@ -53,7 +53,7 @@ The user experience should make it easy to see how temperature patterns may be a
 26. As a user, I want plain-language interpretations of results, so that I do not need to translate raw output myself.
 27. As a student, I want the final app to read from a gold dataset stored in the repo, so that the dashboard is reproducible and simple to deploy.
 28. As a developer, I want ingestion scripts for both source systems, so that the pipeline can be rerun cleanly.
-29. As a developer, I want silver transformations that standardize and aggregate both data sources, so that the gold layer is stable and analysis-ready.
+29. As a developer, I want clean transformations that standardize and aggregate both data sources, so that the gold layer is stable and analysis-ready.
 30. As a developer, I want the weather data expanded to a one-year window, so that the statistical tests are more credible than they would be on a one-week sample.
 31. As a viewer, I want the app to explain that the weather data represent the GTA while demand represents Ontario, so that the geographic mismatch is not hidden.
 32. As a viewer, I want the app to explain that significance does not imply practical importance or causation, so that the conclusions stay responsible.

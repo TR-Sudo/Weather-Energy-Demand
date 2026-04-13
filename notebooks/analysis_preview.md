@@ -26,7 +26,7 @@
 ## Pipeline support for this plan
 - Gold table includes `city`, `temp_min_celsius`, and `is_cold_day` so analysis variables are already prepared.
 - Derived binary flag `is_cold_day` supports secondary analyses (proportion comparisons, chi-square tests).
-- Data cleaning and alignment in silver/gold stages set up fast hypothesis testing in Part 2.
+- Data cleaning and alignment in clean/gold stages set up fast hypothesis testing in Part 2.
 
 ---
 
