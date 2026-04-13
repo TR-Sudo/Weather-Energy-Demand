@@ -334,6 +334,7 @@ def main() -> None:
     st.write(
         "Daily data still carry temporal dependence, so p-values should be interpreted as useful evidence rather than final proof."
     )
+    st.header("6. Insight")
     st.write(
         "The analysis suggests that extreme temperature days tend to coincide with higher Ontario peak demand, and that demand variability can be meaningfully different "
         "on days with strong temperature extremes. These patterns support the idea that weather-based demand pressure is a useful, if not complete, lens for understanding daily energy peaks."
