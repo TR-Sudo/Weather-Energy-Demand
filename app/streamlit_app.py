@@ -112,8 +112,8 @@ def main() -> None:
     metric3.metric("Avg daily temp (C)", f"{filtered['avg_temp_mean_celsius'].mean():.1f}")
     metric4.metric("High-demand days", f"{filtered['high_demand_day'].sum()}")
 
-    st.dataframe(filtered.head(10), width="stretch")
-    st.dataframe(filtered.describe(include="all").transpose(), width="stretch")
+    st.dataframe(filtered.head(10), use_container_width=True)
+    st.dataframe(filtered.describe(include="all").transpose(), use_container_width=True)
 
     column_descriptions = pd.DataFrame(
         [
@@ -125,7 +125,7 @@ def main() -> None:
         ],
         columns=["column", "description"],
     )
-    st.dataframe(column_descriptions, width="stretch")
+    st.dataframe(column_descriptions, use_container_width=True)
 
     st.header("3. Visual Storytelling")
     line_fig = go.Figure()
